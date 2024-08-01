@@ -1,0 +1,145 @@
+.todo{
+    background-color: #002525;
+    box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.30);
+    width: 100%;
+    height: 480px;
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.todo-container{
+    height: 80%;
+    width : 80%;
+}
+
+.todo-heading{ 
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+}
+
+.todo-heading-1{
+    font-size: 28px;
+}
+
+.todo-heading-2{
+    font-size: 15px;
+}
+
+.todo-list{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.todo-list-header{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0 2px;
+    height: 75px;
+
+}
+ 
+
+.todo-list-row{
+    display: flex;
+    justify-content: space-between;
+    border-top:0 ;
+    margin: 2px 0;
+    height: 75px;
+}
+
+
+.todo-cells{
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border: 3px solid #008080;
+    border-left: 0;
+    border-right: 0;
+    text-align: left;
+    padding: 0 0 0 10px;
+}
+
+.todo-date{
+    background-color: #008080;
+    font-weight: 600;
+    padding: 20px 15px;
+    width: 130px;
+}
+
+.todo-priority{
+    font-weight: 600;
+    width: 140px;
+    color:#008080;
+    padding: 0 20px;
+}
+
+.todo-task{
+    color:#008080;
+    font-size: 13px;
+    width: 180px;
+    justify-content: flex-start;
+    padding: 10px 0;
+}
+
+.todo-status{
+    display: flex;
+    padding: 0 20px 0 0;
+    border: 3px solid #008080;
+    border-left: 0;
+    align-items: center;
+    justify-content: flex-end;
+    width: 80px;
+    color:#008080;
+    font-size: 13px;
+
+}
+
+/* checkbox */
+
+.check-tick {
+    display: none;
+  }
+
+  /* Style the label to look like a checkbox */
+  .check-tick-label {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    vertical-align: middle;
+    cursor: pointer;
+    position: relative; /* Required for positioning the checkmark */
+  }
+
+  /* Style the label when the checkbox is checked */
+  .check-tick:checked + .check-tick-label {
+    background-color: #008080;
+  }
+
+  /* Add a checkmark when the checkbox is checked */
+  .check-tick:checked + .check-tick-label::before {
+    content: '✔'; /* Checkmark character */
+    color: #ffffff; /* Checkmark color */
+    font-size: 14px; /* Adjust font size as needed */
+    position: absolute;
+    left: 4px; /* Adjust position as needed */
+  }
+
+.check-ticked-bg{
+    background-color: white;
+}
+
+.priority-img{
+    height: 30px;
+    width: 7px;
+    margin-right: 10px;
+}

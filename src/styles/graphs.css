@@ -1,0 +1,290 @@
+.graphs{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: url('../images/dashboard.svg');
+    color: rgb(213, 213, 213);
+    overflow: scroll;
+}
+
+.graph-header{
+    padding: 0 100px;
+    height: 640px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+ 
+.graph-heading{
+    padding: 50px 0 0 0;
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.graph-info{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 70px;
+}
+
+
+.graph-info-upper{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 70px;
+}
+
+.mood{
+    width: 50%;
+    display: flex;
+    justify-content: flex-start;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+
+}
+
+.mood-ask-para{
+    padding: 0 30px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 40px;
+}
+
+.mood-ask-title{
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 19px;
+}
+
+.mood-ask-moodometer{
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+
+
+
+
+/* -------------- */
+
+.mental{
+    width: 50%;
+    display: flex;
+    justify-content: flex-start;
+    border-left: 1px solid white;
+
+}
+
+.mental-ask-para{
+    padding: 0 30px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 190px;
+}
+
+.mental-ask-title{
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 23px;
+}
+
+.mental-ask-moodometer{
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+
+
+/* -------------- */
+
+
+
+/* mental meter */
+
+.box-grid {
+    display: flex;
+    height: 70px;
+  }
+  
+  .box {
+    flex: 1;
+    padding: 15px 0;
+    border: 1px solid #008080;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    height: 70px; 
+    width: 100px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .box.active {
+    background-color: #008080;
+  }
+  
+  .label {
+    font-size: 13px;
+    font-weight: bold;
+  }
+  
+  .description {
+    font-size: 10px;
+  }
+
+
+
+/* emojie slider */
+
+.circle-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.graph-container{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/* smiley slider */
+
+
+.slider-container {
+    width: 33%;
+    max-width: 600px;
+    text-align: center;
+}
+
+.emojis {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3px;
+}
+
+.emoji {
+    font-size: 1.5rem;
+    color: #008080; /* Teal color for emojis */
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 10px;
+    border-radius: 10px;
+    background: linear-gradient(to right, #008080 50%, #d3d3d3 50%);
+    outline: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 22px;
+    border-radius: 50%;
+    background: #008080; /* Teal color for the thumb */
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #008080; /* Teal color for the thumb */
+    cursor: pointer;
+}
+
+.graph-info-lower{
+    /* height: 100%; */
+    display: flex; 
+    padding: 70px 0;
+}
+
+.paras-and-todo{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+
+}
+
+
+
+/* todo */
+
+
+/* .todo-list {
+    width: 100%;
+    margin: auto;
+    color: #ffffff;
+    background-color: #001f2d;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid #ffffff;
+  }
+  
+  .task-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    border: 1px solid #008080;
+    height: 50px;
+    font-size: 15px;
+  }
+  
+  .task-row span {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+  
+  .task-row input {
+    align-self: center;
+  }
+  
+  .task-date {
+    flex: 1;
+    text-align: center;
+    background-color: #008080;
+    width: 30px;
+  }
+  
+  .task-priority, .task-name {
+    flex: 1;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  .task-status{
+    display: flex;
+    align-items: center;
+  }
+  
+  .task-priority.completed,  .task-status.completed, .task-name.completed {
+    background-color: white;
+    color: #008080;
+  }
+   */
