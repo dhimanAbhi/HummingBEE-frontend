@@ -9,15 +9,7 @@ import { Spinner } from './Spinner';
 import axios from 'axios';
 import Todo from './Todo';
 function Graphs() { 
-    // const location = useLocation();
-    // const { myData } = location.state || {};
-    // let data=[]
-    // Object.keys(myData).forEach((key) => {
-    //   data.push({ 
-    //     parameter:key,
-    //     value:myData[key]
-    //   })
-    // })
+
 
     const [graphData, setGraphData] = useState([{}])
 
