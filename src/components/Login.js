@@ -21,12 +21,10 @@ function Login() {
             const config = {
                 withCredentials: true,
                 headers: {
-                    'Content-Type': 'application/json',
-                },
-                // headers: {
-                //   "Access-Control-Allow-Origin": "*",
-                //   "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-                // }
+                  'Content-Type': 'application/json',
+                  "Access-Control-Allow-Origin": "*",
+                  "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+                }
             };
             const { data } = await axios.post(`${apiUrl}/login`, logUserData, config);
             console.log(data.type === "success");
