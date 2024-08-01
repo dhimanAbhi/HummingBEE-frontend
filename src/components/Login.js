@@ -26,7 +26,6 @@ function Login() {
                 headers: {
                   "Access-Control-Allow-Origin": "*",
                   "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-                  'Content-Type': 'application/json',
                 }
             };
             const { data } = await axios.post(`${apiUrl}/login`, logUserData, config);
