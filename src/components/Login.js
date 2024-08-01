@@ -26,6 +26,7 @@ function Login() {
                   "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
                 }
             };
+            console.log(config)
             const { data } = await axios.post(`${apiUrl}/login`, logUserData, config);
             console.log(data.type === "success");
 
