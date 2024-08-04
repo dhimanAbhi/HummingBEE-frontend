@@ -8,23 +8,18 @@ import { apiUrl } from '../api';
 import { Spinner } from './Spinner';
 import axios from 'axios';
 import Todo from './Todo';
+
 function Graphs() { 
 
 
     const [graphData, setGraphData] = useState([{}])
 
-
-
     const auth = useAuth();
     const [value, setValue] = useState(50);
 
-    const handleChange = (e) => {
-        setValue(e.target.value);
-    };
-
-// mental meter
-
     const [activeBox, setActiveBox] = useState(null);
+
+    
 
   const boxes = [
     { label: 'HIGH', description: 'BURNOUT' },
@@ -38,9 +33,11 @@ function Graphs() {
     setActiveBox(index);
   };
 
+  const handleChange = (e) => {
+    setValue(e.target.value);
+};
 
 
-  // todo list
 
   const [tasks, setTasks] = useState([
     { id: 1, date: '06 JULY', priority: 'MEDIUM', task: 'DESIGN A CARROUSEL, SM', completed: false },
@@ -56,8 +53,7 @@ function Graphs() {
 
   const userId = auth.loggedUser._id;
 
-
-
+  
   useEffect(() => {
     const getScores = async () => {
         try {
@@ -154,12 +150,11 @@ function Graphs() {
             </div>
             <div className='todo'>
               <Todo />
-
             </div>
           </div>
-          <div className='calendar'>
+          {/* <div className='calendar'>
             <Calendar />
-          </div>
+          </div> */}
         </div>
       <div>
 

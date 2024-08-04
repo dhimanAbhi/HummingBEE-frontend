@@ -7,7 +7,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-}
+} 
 
 .todo-container{
     height: 80%;
@@ -34,24 +34,35 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
+    /* justify-content: center; */
+    height: 300px;
 }
+
 
 .todo-list-header{
     display: flex;
     justify-content: space-between;
     margin: 20px 0 2px;
-    height: 75px;
-
+    height: 20%;
 }
- 
+
+.todo-list-rows{
+    height: 83.34%;
+    overflow: scroll;
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+}
+
+.todo-list-rows::-webkit-scrollbar {
+    display: none;
+  }
 
 .todo-list-row{
     display: flex;
     justify-content: space-between;
     border-top:0 ;
     margin: 2px 0;
-    height: 75px;
+    height: 60px;
 }
 
 
@@ -70,8 +81,11 @@
 .todo-date{
     background-color: #008080;
     font-weight: 600;
-    padding: 20px 15px;
+    padding: 10px 15px;
     width: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .todo-priority{
@@ -79,11 +93,12 @@
     width: 140px;
     color:#008080;
     padding: 0 20px;
+    font-size: 13px;
 }
 
 .todo-task{
     color:#008080;
-    font-size: 13px;
+    font-size: 11px;
     width: 180px;
     justify-content: flex-start;
     padding: 10px 0;
@@ -94,12 +109,29 @@
     padding: 0 20px 0 0;
     border: 3px solid #008080;
     border-left: 0;
+    border-right: 0;
     align-items: center;
     justify-content: flex-end;
     width: 80px;
     color:#008080;
     font-size: 13px;
+}
 
+.todo-delete{
+    width: 80px;
+    border: 3px solid #008080;
+    border-left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.todo-delete-btn{
+    background-color: rgb(176, 0, 0);
+    border: 0;
+    outline: 0;
+    border-radius: 3px;
+    color: white;
 }
 
 /* checkbox */
@@ -139,7 +171,31 @@
 }
 
 .priority-img{
-    height: 30px;
-    width: 7px;
+    height: 20px;
+    width: 4px;
     margin-right: 10px;
 }
+
+.pick-date{
+    
+} 
+
+.pick-date input{
+    height: 100%;
+}
+
+.pick-priority{
+    height:100%;
+}
+
+.pick-task{
+    height: 100%;
+}
+
+.add-task{
+    height: 100%;
+    background-color: red;
+}
+
+
+

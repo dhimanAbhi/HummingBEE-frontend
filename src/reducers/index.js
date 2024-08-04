@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
 import users from "./users";
 import flash from "./flash";
-export default combineReducers({ users, flash})
+import tasks from "./tasks";
+export default combineReducers({ users, flash, tasks})
