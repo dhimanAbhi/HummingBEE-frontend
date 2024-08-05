@@ -59,23 +59,23 @@ const submitRegister = async () => {
           </div>
           
             <form className='form-container' onSubmit={handleSubmit}>
-              <div className='input-container'>
+              <div className='signup-input-container'>
                 <div className='input-label'>Name</div>
                 <input type='text' value={userData.name} onChange={(e) => setUserData({...userData, name:e.target.value})} className='input-box' placeholder='Full Name'/>
               </div>
-              <div className='input-container'>
+              <div className='signup-input-container'>
                 <div className='input-label'>Username</div>
                 <input type='text' value={userData.username} onChange={(e) => setUserData({...userData, username:e.target.value})} className='input-box' placeholder='Username'/>
               </div>
-              <div className='input-container'>
+              <div className='signup-input-container'>
                 <div className='input-label'>Email</div>
                 <input type='email' value={userData.email} onChange={(e) => setUserData({...userData, email:e.target.value})} className='input-box' placeholder='name@company.com'/>
               </div>
-              <div className='input-container'>
+              <div className='signup-input-container'>
                 <div className='input-label'>Password</div>
                 <input type='password' value={userData.password} onChange={(e) => setUserData({...userData, password:e.target.value})} className='input-box' placeholder='atleast 8 charachters'/>
               </div>
-              <div className='input-container'>
+              <div className='signup-input-container'>
                 <div className='input-label'>Team</div>
                 <select className='input-box' value={userData.team} onChange={(e) => setUserData({...userData, team:e.target.value})}>
                   <option className='option'>Development</option>

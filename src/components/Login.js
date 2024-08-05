@@ -59,11 +59,11 @@ function Login() {
                     Login Here
                 </div>
                 <form className='form-container' onSubmit={handleSubmit}>
-                    <div className='input-container'>
+                    <div className='signup-input-container'>
                         <div className='input-label'>Username</div>
                         <input value={logUserData.username} onChange={(e) => setlogUserData({ ...logUserData, username: e.target.value })} className='input-box' placeholder='username' />
                     </div>
-                    <div className='input-container'>
+                    <div className='signup-input-container'>
                         <div className='input-label'>Password</div>
                         <input type='password' value={logUserData.password} onChange={(e) => setlogUserData({ ...logUserData, password: e.target.value })} className='input-box' placeholder='at least 8 characters' />
                     </div>

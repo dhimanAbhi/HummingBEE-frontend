@@ -9,6 +9,16 @@
     overflow: scroll;
 }
 
+.graphs::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scroll bar for IE and Edge */
+.graphs {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
 .graph-header{
     padding: 0 100px;
     height: 640px;

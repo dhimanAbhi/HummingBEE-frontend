@@ -9,17 +9,17 @@ label {
     font-size: 18px;
 }
 
-.input-container {
+/* .input-container {
     display: flex;
     align-items: center;
-}
+} */
 
 input {
     width: 100%;
     padding: 10px;
     font-size: 16px;
     border: 2px solid #00796b;
-    margin-right: 8px;
+    /* margin-right: 8px; */
 }
 
 .calendar-button {

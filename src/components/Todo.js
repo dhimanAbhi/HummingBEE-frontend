@@ -117,7 +117,7 @@ function Todo() {
           }
 
         </div>
-        <div className='todo-list-row'>
+        <div className='todo-list-row mt-2'>
           <div className='pick-date'>
             <DatePicker
               selected={startDate}

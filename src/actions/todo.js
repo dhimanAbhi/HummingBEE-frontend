@@ -49,7 +49,7 @@ export const createTask = (taskData) => async (dispatch) => {
         
         if(data.type === "success"){
             console.log("success")
-            dispatch({type: CREATE_TASK, payload: data})
+            dispatch({type: CREATE_TASK, payload: data.data})
             dispatch({type:FLASH_SUCCESS, payload:data.message})
         }
         else{
