@@ -35,14 +35,14 @@
     flex-direction: column;
     align-items: flex-start;
     /* justify-content: center; */
-    height: 300px;
+    height: 320px;
 }
 
 
 .todo-list-header{
     display: flex;
     justify-content: space-between;
-    margin: 20px 0 2px;
+    margin: 20px 0 0px;
     height: 20%;
 }
 
@@ -61,10 +61,13 @@
     display: flex;
     justify-content: space-between;
     border-top:0 ;
-    margin: 2px 0;
+    margin: 8px 0;
     height: 60px;
 }
 
+.todo-row-checked{
+    background-color: white;
+}
 
 .todo-cells{
 
@@ -82,7 +85,9 @@
     background-color: #008080;
     font-weight: 600;
     padding: 10px 15px;
-    width: 104px;
+    width: 123px;
+
+    font-size: 16px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -93,15 +98,17 @@
     width: 140px;
     color:#008080;
     padding: 0 20px;
-    font-size: 13px;
+    font-size: 16px;
+    font-weight: 600;
 }
 
 .todo-task{
     color:#008080;
-    font-size: 11px;
+    font-size: 16px;
     width: 180px;
     justify-content: flex-start;
     padding: 10px 0;
+    font-weight: 400;
 }
 
 .todo-status{
@@ -154,6 +161,10 @@
     position: relative; /* Required for positioning the checkmark */
   }
 
+.check-tick-label-bg{
+    border: 2px solid #008080;
+}
+
   /* Style the label when the checkbox is checked */
   .check-tick:checked + .check-tick-label {
     background-color: #008080;
@@ -184,21 +195,31 @@
 
 .pick-date input{
     height: 100%;
-    padding: 10px 5px !important;
-    width: 98px;
+    padding: 15px 15px !important;
+    width: 123px;
     outline:0;
     border:0;
+    background-color: #008080;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
 }
+
 
 .pick-priority{
     height:100%;
     outline:0;
+    padding: 0 8px;
     /* border:0; */
 }
 
 .pick-task{
     height: 100%;
-    width: 300px;
+    width: 284px;
     outline: 0;
     border:0;
 }
@@ -206,7 +227,7 @@
 .add-task{
     height: 100%;
     color:white;
-    width: 105px;
+    width: 95px;
     background-color: #008080;
     border: 0;
     outline: 0;

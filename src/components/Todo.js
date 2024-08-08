@@ -82,7 +82,7 @@ function Todo() {
     <div className='todo-container'>
       <div className='todo-heading'>
         <div className='todo-heading-1'>To do List</div>
-        <div className='todo-heading-2'>THIS MONTH THIS MONTH</div>
+        <div className='todo-heading-2'>THIS MONTH </div>
       </div>
       <div className='todo-list'>
         <div className='todo-list-header'>
@@ -97,7 +97,7 @@ function Todo() {
         {
           tasks && tasks.slice().reverse().map((task) => {
             return (
-                <div className='todo-list-row' key={task.id}>
+                <div className={`todo-list-row ${!task.completed?'todo-row-checked':''}`} key={task.id}>
                   <div className='todo-cells todo-date'>{format(task.date)}</div>
                   <div className={`todo-cells todo-priority`}>
                     <img className='priority-img' src={`../images/${task.priority}-icon.png`} alt={`${task.priority} Priority`} />
@@ -108,7 +108,7 @@ function Todo() {
                   </div>
                   <div className={`todo-status `}> 
                     <input type="checkbox" id={`check-${task._id}`} className='check-tick' checked={task.completed}  onClick={() =>   dispatch(completeTask(task))} />
-                    <label htmlFor={`check-${task._id}`} className='check-tick-label'></label>
+                    <label htmlFor={`check-${task._id}`} className={`check-tick-label ${task.completed?'':'check-tick-label-bg'}`}></label>
                   </div>
                   <div className='todo-delete'>
                     {/* <button type="button" id="todo-delete" onClick={() => dispatch(deleteTask(task))} className='todo-delete-btn'>Delete</button> */}
@@ -144,9 +144,8 @@ function Todo() {
 }
 
 const Delete = styled(DeleteIcon)`
-  color: red;
+  color: #008080;
   transform: scale(1.3);
-
   :hover{
     color: white;
     cursor: pointer;
