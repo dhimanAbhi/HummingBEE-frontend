@@ -100,8 +100,7 @@ function Todo() {
                 <div className='todo-list-row' key={task.id}>
                   <div className='todo-cells todo-date'>{format(task.date)}</div>
                   <div className={`todo-cells todo-priority`}>
-                    {/* <img className='priority-img' src={`../images/${task.priority}-icon.png`} alt={`${task.priority} Priority`} /> */}
-                    <img className='priority-img' src={`../images/High-icon.png`} alt={`${task.priority} Priority`} />
+                    <img className='priority-img' src={`../images/${task.priority}-icon.png`} alt={`${task.priority} Priority`} />
                     {task.priority}
                   </div>
                   <div className={`todo-cells todo-task ${task.completed?'strikethrough':''}`}>
@@ -130,8 +129,6 @@ function Todo() {
               className='date-picker'
             />
           </div>
-          <img className='priority-img' src='../images/High-icon.png' />
-
           <select onChange={handleChange} placeholder="Priority" value={eventVal.priority} name='priority' className='pick-priority' id="priority">
             <option value="Low">Low</option>
             <option value="Medium">Medium</option>
