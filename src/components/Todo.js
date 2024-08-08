@@ -130,6 +130,8 @@ function Todo() {
               className='date-picker'
             />
           </div>
+          <img className='calendar-img' src='../images/google-calendar.svg' />
+
           <select onChange={handleChange} placeholder="Priority" value={eventVal.priority} name='priority' className='pick-priority' id="priority">
             <option value="Low">Low</option>
             <option value="Medium">Medium</option>
