@@ -152,9 +152,15 @@ function Graphs() {
               <Todo />
             </div>
           </div>
-          {/* <div className='calendar'>
-            <Calendar />
-          </div> */}
+          <div className='calendar'>
+            {/*<Calendar />*/}
+            <a  href="https://calendar.google.com" target="_blank" rel="noopener noreferrer">
+              <img className='calendar-img' src='../images/google-calendar.svg' />
+            </a>
+            <a className='' href="https://slack.com/intl/en-in" target="_blank" rel="noopener noreferrer">
+              <img className='slack-img' src='../images/slack.svg' />
+            </a>
+          </div>
         </div>
       <div>
 

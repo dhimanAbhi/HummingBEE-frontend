@@ -82,7 +82,7 @@
     background-color: #008080;
     font-weight: 600;
     padding: 10px 15px;
-    width: 130px;
+    width: 104px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -106,12 +106,12 @@
 
 .todo-status{
     display: flex;
-    padding: 0 20px 0 0;
+    /* padding: 0 20px 0 0; */
     border: 3px solid #008080;
     border-left: 0;
     border-right: 0;
     align-items: center;
-    justify-content: flex-end;
+    justify-content:center;
     width: 80px;
     color:#008080;
     font-size: 13px;
@@ -124,6 +124,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color:#008080;
+    font-size: 13px;
 }
 
 .todo-delete-btn{
@@ -182,21 +184,36 @@
 
 .pick-date input{
     height: 100%;
+    padding: 10px 5px !important;
+    width: 98px;
+    outline:0;
+    border:0;
 }
 
 .pick-priority{
     height:100%;
+    outline:0;
+    /* border:0; */
 }
 
 .pick-task{
     height: 100%;
+    width: 300px;
+    outline: 0;
+    border:0;
 }
 
 .add-task{
     height: 100%;
     color:white;
+    width: 105px;
     background-color: #008080;
+    border: 0;
+    outline: 0;
 }
 
 
 
+.strikethrough{
+    text-decoration: line-through;
+}

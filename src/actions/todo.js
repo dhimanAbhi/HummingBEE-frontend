@@ -1,6 +1,7 @@
 import {CREATE_TASK,
     DELETE_TASK,
     GET_TASKS,
+    COMPLETE_TASK,
 FLASH_SUCCESS,
 FLASH_ERROR
 } from '../constants/actionTypes'
@@ -79,3 +80,18 @@ export const deleteTask = (task) => async (dispatch) => {
         dispatch({ type: FLASH_ERROR, payload: err.message });
     }
 }
+
+export const completeTask = (taskId) => async (dispatch) => {
+    try {
+        const { data } = await axios.post(`${apiUrl}/tasks/completeTask`, { taskId });
+        console.log(data.data)
+        if (data.type === "success") {
+            dispatch({ type: COMPLETE_TASK, payload: data.data });
+            dispatch({ type: FLASH_SUCCESS, payload: data.message });
+        } else {
+            dispatch({ type: FLASH_ERROR, payload: data.message });
+        }
+    } catch (err) {
+        dispatch({ type: FLASH_ERROR, payload: err.message });
+    }
+};

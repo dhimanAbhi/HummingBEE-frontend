@@ -9,3 +9,4 @@ export const RESET_MESSAGE = 'RESET_MESSAGE';
 export const CREATE_TASK = 'CREAT_TASK';
 export const DELETE_TASK = 'DELETE_TASK';
 export const GET_TASKS = 'GET_TASKS';
+export const COMPLETE_TASK = 'COMPLETE_TASK'
