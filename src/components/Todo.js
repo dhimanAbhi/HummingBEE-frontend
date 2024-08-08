@@ -130,7 +130,7 @@ function Todo() {
               className='date-picker'
             />
           </div>
-          <img className='priority-img' src={`../images/High-icon.png`} />
+          <img className='priority-img' src='../images/High-icon.png' />
 
           <select onChange={handleChange} placeholder="Priority" value={eventVal.priority} name='priority' className='pick-priority' id="priority">
             <option value="Low">Low</option>
