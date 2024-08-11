@@ -31,7 +31,7 @@
 }
 
 .signup-input-container{
-    margin: 0 0 24px;
+    margin: 0 0 12px;
 }
 
 .input-label{
@@ -52,7 +52,7 @@
     width: 310px;
     border-radius: 10px;
     border: 1.8px solid rgb(155, 155, 155);
-    padding: 6px 17px;
+    padding: 4px 17px;
   }
   
 .option {

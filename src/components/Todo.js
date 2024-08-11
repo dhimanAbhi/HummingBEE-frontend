@@ -69,7 +69,6 @@ function Todo() {
 
     const handleAddTask = () =>{
         dispatch(createTask(eventVal))
-
     }
 
 

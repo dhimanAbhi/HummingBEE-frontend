@@ -21,7 +21,6 @@ function Survey() {
 
     const [activeStep, setActiveStep] = useState(0);
 
-    // Function to handle the click and update the active step
     const handleStepClick = (index) => {
         setActiveStep(index);
     };
@@ -37,19 +36,12 @@ function Survey() {
 
 
     const handleRadioSelection = (index, value) => {
-            // Create a copy of the current page data and update it
     const currentPageData = { ...selectedValues[paraObj[page]], [index]: Number(value) };
 
-    // Update the selected values
     setSelectedValues(prevSelectedValues => {
         const updatedSelectedValues = { ...prevSelectedValues, [paraObj[page]]: currentPageData };
-
-        // Calculate the new count based on the updated selected values
         const newCount = Object.keys(updatedSelectedValues[paraObj[page]]).length;
-
-        // Update the count
         setCount(newCount);
-
         return updatedSelectedValues;
     });
     }

@@ -36,10 +36,13 @@ function Login() {
                 console.log(data.data);
                 dispatch({ type: FLASH_SUCCESS, payload: data.message });
                 console.log(auth.loggedUser);
-                if (!data.data.scores)
+                if (data.data.role=='Employee' && !data.data.scores)
                     navigate('/onboarding', { replace: true });
-                else
+                else if(data.data.role=='Employee' && data.data.scores)
                     navigate('/takeSurvey/graphs', { replace: true });
+                else if(data.data.role=='HR')
+                    navigate('/hrdashboard', {replace: true})
+                
             } else if (data.type === "error") {
                 console.log("happened");
                 dispatch({ type: FLASH_ERROR, payload: data.message });

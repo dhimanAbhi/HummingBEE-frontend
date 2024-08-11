@@ -13,6 +13,8 @@ import ThankYou from './components/ThankYou';
 import { RequireAuth } from './utils/RequireAuth';
 import Flash from './components/Flash';
 import ScrollToTop from './components/ScrollToTop';
+import HRDashboard from './components/HRDashboard';
+
 function App() {
   return (
     <div className="App">
@@ -27,6 +29,7 @@ function App() {
           <Route path='/signup' element={<SignUp />} />
           <Route path='/login' element={<Login />} />
           <Route path='/onboarding' element={<RequireAuth><ThankYou /></RequireAuth>} />
+          <Route path='/hrdashboard' element={<RequireAuth><HRDashboard /></RequireAuth>} />
         </Routes>
         </Authprovider>
       </Router>

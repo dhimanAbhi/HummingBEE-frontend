@@ -11,7 +11,7 @@ import '../styles/signup.css'
 
 function SignUp() {
 
-  const [userData, setUserData] = useState({name:'', username:'', email:'', password:'', team:''})
+  const [userData, setUserData] = useState({name:'', username:'', email:'', password:'', role:'', team:''})
   const dispatch = useDispatch()
   const auth = useAuth()
   const navigate = useNavigate()
@@ -33,7 +33,11 @@ const submitRegister = async () => {
             console.log("Registered Succuessfully")
             dispatch({type:FLASH_SUCCESS, payload:data.message})
             auth.logIn(data.data)
-            navigate('/onboarding')
+            if(data.data.role == 'Employee')
+              navigate('/onboarding')
+            else 
+              navigate('/hrdashboard')
+
         }
         else{
           console.log("Not Registered Succuessfully", data.message)
@@ -74,6 +78,13 @@ const submitRegister = async () => {
               <div className='signup-input-container'>
                 <div className='input-label'>Password</div>
                 <input type='password' value={userData.password} onChange={(e) => setUserData({...userData, password:e.target.value})} className='input-box' placeholder='atleast 8 charachters'/>
+              </div>
+              <div className='signup-input-container'>
+                <div className='input-label'>Role</div>
+                <select className='input-box' value={userData.role} onChange={(e) => setUserData({...userData, role:e.target.value})}>
+                  <option className='option'>Employee</option>
+                  <option className='option'>HR</option>
+                </select>
               </div>
               <div className='signup-input-container'>
                 <div className='input-label'>Team</div>
