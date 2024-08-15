@@ -74,10 +74,10 @@ function HRDashboard() {
     const [lineChartData, setLineChartData] = useState([])
     
     const [circlessqrData, setcirclessqrData] = useState([
-        { radius: 7, param: 'positivity', color: '#028A0F', left: '30%', top: '20%' },
-        { radius: 4, param:'engagement', color: '#B0FC38', left: '60%', top: '40%' },
-        { radius: 5, param:'relationship' ,color: '#3A5311', left: '15%', top: '50%' },
-        { radius: 3, param:'meaning',color: '#3DED97', left: '70%', top: '15%' },
+        { radius: 7, param: 'positivity', color: '#028A0F', left: '20%', top: '10%' },
+        { radius: 4, param:'engagement', color: '#B0FC38', left: '60%', top: '10%' },
+        { radius: 5, param:'relationship' ,color: '#3A5311', left: '20%', top: '50%' },
+        { radius: 3, param:'meaning',color: '#3DED97', left: '60%', top: '50%' },
       ])
 
 
@@ -125,7 +125,7 @@ function HRDashboard() {
         Object.keys(params).forEach((param) => {
             sqrcircleDat.forEach((val) => {
                 if(val.param == param){
-                    val.radius = 1.6*Number(params[param])
+                    val.radius = 1.9*Number(params[param])
                 }
             })
         })
@@ -142,6 +142,10 @@ function HRDashboard() {
     const setLineGraph = (currentMonth, currentDept,allScoresData) => {
         let params = [
             {
+                weekName:"",
+                value:0
+            },
+            {
                 weekName:"Week 1",
                 value:0
             },
@@ -155,6 +159,10 @@ function HRDashboard() {
             },
             {
                 weekName:"Week 4",
+                value:0
+            },
+            {
+                weekName:"",
                 value:0
             }
         ]
