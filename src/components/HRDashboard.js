@@ -202,7 +202,7 @@ function HRDashboard() {
         
         
         setLineChartData(params)
-        console.log(params)
+        console.log("wooo: ",params)
     }
 
     const handleCircleSqrGraph = () => {
@@ -221,11 +221,9 @@ function HRDashboard() {
                 
                 const { data } = await axios.get(`${apiUrl}/avgscores`, config);
                 if (data) {
-                    setScoresData(data.data)
-                    setCircleScore('AllDepts.', data.data)
-                    const month = new Date().toLocaleString('default', { month: 'long' })
-                    setLineGraph(month, 'AllDepts.',scoresData)
-                    console.log(data.data)
+                    setScoresData(data.data);
+                    setCircleScore('AllDepts.', data.data);
+                    console.log(data.data);
                 }
             } catch (err) {
                 console.log(err.message);
@@ -233,7 +231,15 @@ function HRDashboard() {
         };
     
         getAvgScores();
-    }, [userId, auth.token]); 
+    }, [userId, auth.token]);
+    
+    useEffect(() => {
+        if (scoresData.length > 0) {
+            const month = new Date().toLocaleString('default', { month: 'long' });
+            setLineGraph(month, 'AllDepts.', scoresData);
+        }
+    }, [scoresData]); // Trigger this effect whenever scoresData is updated
+    
 
 
   return (
