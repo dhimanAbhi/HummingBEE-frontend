@@ -68,7 +68,8 @@ function Survey() {
         const dataTemp = 
         {
             data:newGraphData,
-            author: auth.loggedUser._id
+            author: auth.loggedUser._id,
+            date: new Date(),
         }
         setGraphData(newGraphData); 
         submitScore(dataTemp)

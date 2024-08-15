@@ -56,7 +56,7 @@ const CircularProgress = ({ radius, stroke, progress, number, parameter }) => {
           y="60%"
           textAnchor="middle"
           dominantBaseline="middle"
-          className="circle-number"
+          className="circle-number-one"
         >
           {number}
         </text>

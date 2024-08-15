@@ -14,6 +14,7 @@ import { RequireAuth } from './utils/RequireAuth';
 import Flash from './components/Flash';
 import ScrollToTop from './components/ScrollToTop';
 import HRDashboard from './components/HRDashboard';
+// import Toolkit from './components/Toolkit';
 
 function App() {
   return (
@@ -30,6 +31,8 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/onboarding' element={<RequireAuth><ThankYou /></RequireAuth>} />
           <Route path='/hrdashboard' element={<RequireAuth><HRDashboard /></RequireAuth>} />
+          {/* <Route path='/toolkit' element={<Toolkit />} /> */}
+         
         </Routes>
         </Authprovider>
       </Router>
