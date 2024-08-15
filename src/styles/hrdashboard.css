@@ -2,7 +2,8 @@
     /* height: 100vh; */
     width: 100%;
     padding: 50px 100px;
-    background: url('../images/dashboard.svg');
+    /* background: url('../images/dashboard.svg'); */
+    background-color: #002525;
     color: white;
 }
 
