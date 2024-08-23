@@ -6,12 +6,20 @@ import { useState } from 'react';
 import { apiUrl } from '../api';
 import '../styles/hrdashboard.css'
 import WaterLevelCircle from './WaterLevelCircle';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, Legend } from 'recharts';
 import CircleComponent from './CircleComponent';
+import { Link } from 'react-router-dom';
+import PersonIcon from '@mui/icons-material/Person';
+import Person from '@mui/icons-material/Person';
+import styled from '@emotion/styled';
+import { useDispatch } from 'react-redux';
+import { FLASH_SUCCESS, FLASH_ERROR } from '../constants/actionTypes';
+import { useNavigate } from 'react-router-dom';
+
+
 function HRDashboard() {
 
-
-    const data = [
+    const lol = [
         {
           name: 'Page A',
           uv: 4000,
@@ -55,6 +63,8 @@ function HRDashboard() {
           amt: 2100,
         },
       ];
+      
+
 
 
       const circles = [
@@ -70,9 +80,11 @@ function HRDashboard() {
     const [curDept, setCurDept] = useState('AllDepts.')
     const [scoresData, setScoresData] = useState([])
     const [circleData, setCircleData] = useState({})
-    const [curMonth, setCurMonth] = useState(new Date().toLocaleString('default', { month: 'long' }))
+    const [curLineMonth, setLineCurMonth] = useState(new Date().toLocaleString('default', { month: 'long' }))
+    const [curBarMonth, setBarCurMonth] = useState(new Date().toLocaleString('default', { month: 'long' }))
     const [lineChartData, setLineChartData] = useState([])
-    
+    const [barGraphData, setBarGraphData] = useState([])
+
     const [circlessqrData, setcirclessqrData] = useState([
         { radius: 7, param: 'positivity', color: '#028A0F', left: '20%', top: '10%' },
         { radius: 4, param:'engagement', color: '#B0FC38', left: '60%', top: '10%' },
@@ -81,11 +93,14 @@ function HRDashboard() {
       ])
 
 
+      const dispatch = useDispatch()
+      const navigate = useNavigate()
+
     const handleChange = (e) => {
         const currentDept = e.target.value;
         setCurDept(e.target.value);
         setCircleScore(currentDept, scoresData)
-        setLineGraph(curMonth, currentDept, scoresData)
+        setLineGraph(curLineMonth, currentDept, scoresData)
     }
 
     const getWeekOfMonth = (dateString) => {
@@ -135,7 +150,7 @@ function HRDashboard() {
 
     const handleLineGraphChange = (e) => {
         const currentMonth= e.target.value;
-        setCurMonth(e.target.value);
+        setLineCurMonth(e.target.value);
         setLineGraph(currentMonth, curDept,scoresData)
     }
 
@@ -213,6 +228,129 @@ function HRDashboard() {
         console.log("wooo: ",params)
     }
 
+    const handleBarGraphChange = (e) => {
+        const currentMonth= e.target.value;
+        setBarCurMonth(e.target.value);
+        setBarData(currentMonth, curDept,scoresData)
+    }
+    const setBarData = (currentMonth, currentDept, allScoresData) => {
+        let params = [
+            {
+                weekName: "",
+                lowest: 0,
+                median: 0,
+                highest: 0
+            },
+            {
+                weekName: "Week 1",
+                lowest: 0,
+                median: 0,
+                highest: 0
+            },
+            {
+                weekName: "Week 2",
+                lowest: 0,
+                median: 0,
+                highest: 0
+            },
+            {
+                weekName: "Week 3",
+                lowest: 0,
+                median: 0,
+                highest: 0
+            },
+            {
+                weekName: "Week 4",
+                lowest: 0,
+                median: 0,
+                highest: 0
+            },
+            {
+                weekName: "",
+                lowest: 0,
+                median: 0,
+                highest: 0
+            }
+        ];
+    
+        let newScore = [];
+    
+        // Filter scores based on currentDept and currentMonth
+        allScoresData.forEach((score) => {
+            const dateObject = new Date(score.date);
+            const monthString = dateObject.toLocaleString('en-US', { month: 'long' });
+    
+            if (currentDept === 'AllDepts.' && monthString === currentMonth) {
+                newScore.push(score);
+            } else if (score.user.team === currentDept && monthString === currentMonth) {
+                newScore.push(score);
+            }
+        });
+    
+        let weeks = ["Week 1", "Week 2", "Week 3", "Week 4"];
+    
+        weeks.forEach(week => {
+            let weeklyScores = [];
+    
+            // Collect all scores for the given week
+            newScore.forEach((score) => {
+                if (`Week ${getWeekOfMonth(score.date)}` === week) {
+                    let totalParamsAverage = 0;
+                    score.data.forEach((val) => {
+                        totalParamsAverage += val.value;
+                    });
+                    const avgScore = Number((totalParamsAverage / score.data.length).toFixed(1));
+                    weeklyScores.push(avgScore);
+                }
+            });
+    
+            if (weeklyScores.length > 0) {
+                // Calculate lowest, highest, and median
+                const lowest = Math.min(...weeklyScores);
+                const highest = Math.max(...weeklyScores);
+                const median = Number((weeklyScores.reduce((acc, curr) => acc + curr, 0) / weeklyScores.length).toFixed(1));
+    
+                // Update params for the given week
+                for (let i = 0; i < params.length; i++) {
+                    if (params[i].weekName === week) {
+                        params[i].lowest = lowest;
+                        params[i].median = median;
+                        params[i].highest = highest;
+                        break; // Stop the loop once the weekName is found and updated
+                    }
+                }
+            }
+        });
+    
+        // Set the bar graph data with the updated params
+        setBarGraphData(params);
+        console.log("Bar Data: ", params);
+    };
+    
+
+    const handleLogout = async () => {
+        const config = {
+            withCredentials: true,
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          };
+
+        const {data} = await axios.post(`${apiUrl}/logout`, config)
+        
+        if(data.type === 'success')
+        auth.logOut()
+
+        if(data.type === "success"){
+            dispatch({type:FLASH_SUCCESS, payload:data.message})
+        }
+        else
+            dispatch({type:FLASH_ERROR, payload:data.message})
+
+        navigate('/', {replace: true})
+    }
+ 
+
     const handleCircleSqrGraph = () => {
 
     }
@@ -223,7 +361,7 @@ function HRDashboard() {
                 const config = {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${auth.token}`, // Adjust authorization as needed
+                        'Authorization': `Bearer ${auth.token}`,
                     },
                 };
                 
@@ -231,6 +369,7 @@ function HRDashboard() {
                 if (data) {
                     setScoresData(data.data);
                     setCircleScore('AllDepts.', data.data);
+                    setBarData(new Date().toLocaleString('default', { month: 'long' }), 'AllDepts.', data.data); // Added this to initialize bar chart data
                     console.log(data.data);
                 }
             } catch (err) {
@@ -245,13 +384,26 @@ function HRDashboard() {
         if (scoresData.length > 0) {
             const month = new Date().toLocaleString('default', { month: 'long' });
             setLineGraph(month, 'AllDepts.', scoresData);
+            setBarData(month, 'AllDepts.', scoresData); // Ensure bar chart data is updated when scoresData changes
         }
     }, [scoresData]); // Trigger this effect whenever scoresData is updated
     
 
-
   return (
     <div className='dashboard-container'>
+        <div class="hr-heading">
+            <div className='hr-heading-container'>
+            <div class="hr-icon">HummingBEE</div>
+                <div class="lines">
+                <div class="hr-line"></div>
+                <div class="hr-line"></div>
+                <div class="hr-line"></div>
+                <div class="hr-line"></div>
+                <div class="hr-line"></div>
+                </div>
+                <a onClick={handleLogout} className="ms-3 heading-hr-logout"><PersonIconI /></a>
+            </div>
+        </div>
         <div className='dashboard-heading'>
             HR DASHBOARD
         </div>
@@ -274,8 +426,16 @@ function HRDashboard() {
                     {
                         circleData && Object.keys(circleData).map((circle) => {
                             return <div className='parameter-circle'>
-                                        <WaterLevelCircle value={circleData[circle]} />
-                                        <div>{circle.charAt(0).toUpperCase() + circle.slice(1)}</div>
+                                        {circle == 'engagement' ? 
+                                        <Link to='/toolkit' style={{textDecoration:"none", color:"white"}}>
+                                            <WaterLevelCircle value={circleData[circle]} />
+                                            <div style={{marginTop:"24px"}}>{circle.charAt(0).toUpperCase() + circle.slice(1)}</div>
+                                        </Link> : 
+                                            <>
+                                                <WaterLevelCircle value={circleData[circle]} />
+                                                <div style={{marginTop:"24px"}}>{circle.charAt(0).toUpperCase() + circle.slice(1)}</div>
+                                            </>
+                                        }                                        
                                     </div>
                         })
                     }
@@ -319,8 +479,8 @@ function HRDashboard() {
         <div className='second-section'>
             <div className='score-line-graph'>
                 <div className='d-flex justify-content-between'>
-                    <div>Overall Average</div>
-                    <select onChange={handleLineGraphChange} className='month-dropdown' value={curMonth}>
+                    <div className='graphHeading'>Overall Average</div>
+                    <select onChange={handleLineGraphChange} className='month-dropdown' value={curLineMonth}>
                         <option value="January">January</option>
                         <option value="February">February</option>
                         <option value="March">March</option>
@@ -358,7 +518,48 @@ function HRDashboard() {
                 </ResponsiveContainer>
                 </div>
             </div>
-            <div className='score-bar-graph'>
+            <div className='bar-graph'>
+            
+                <div className='d-flex justify-content-between'>
+                    <div className='graphHeading'>Highest, lowest & median performances</div>
+                    <select onChange={handleBarGraphChange} className='month-dropdown' value={curBarMonth}>
+                        <option value="January">January</option>
+                        <option value="February">February</option>
+                        <option value="March">March</option>
+                        <option value="April">April</option>
+                        <option value="May">May</option>
+                        <option value="June">June</option>
+                        <option value="July">July</option>
+                        <option value="August">August</option>
+                        <option value="September">September</option>
+                        <option value="October">October</option>
+                        <option value="November">November</option>
+                        <option value="December">December</option>
+                    </select>
+                </div>
+                <div className='bar-graph-container'>
+                    <ResponsiveContainer width="100%" height="100%">
+                        <BarChart
+                            width={500}
+                            height={300}
+                            data={barGraphData}
+                            margin={{
+                                top: 20,
+                                right: 30,
+                                left: 20,
+                                bottom: 5,
+                            }}
+                        >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="weekName" />
+                        <YAxis />
+                        <Tooltip />
+                        <Bar dataKey="lowest" stackId="a" fill="#008080" />
+                        <Bar dataKey="median" stackId="a" fill="#a4a4a4" />
+                        <Bar dataKey="median" stackId="a" fill="#00e1e1" />
+                        </BarChart>
+                    </ResponsiveContainer>
+                </div>
             </div>
         </div>
 
@@ -366,5 +567,17 @@ function HRDashboard() {
     </div>
   )
 }
+
+const PersonIconI = styled(Person)`
+    transform:scale(1.5);
+    color: #008080;
+    margin-top:5px;
+    transition: 0.2s all;
+
+    :hover{
+    color: white;
+    cursor:pointer;
+    }
+`
 
 export default HRDashboard
