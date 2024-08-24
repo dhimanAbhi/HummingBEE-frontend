@@ -236,12 +236,6 @@ function HRDashboard() {
     const setBarData = (currentMonth, currentDept, allScoresData) => {
         let params = [
             {
-                weekName: "",
-                lowest: 0,
-                median: 0,
-                highest: 0
-            },
-            {
                 weekName: "Week 1",
                 lowest: 0,
                 median: 0,
@@ -265,12 +259,6 @@ function HRDashboard() {
                 median: 0,
                 highest: 0
             },
-            {
-                weekName: "",
-                lowest: 0,
-                median: 0,
-                highest: 0
-            }
         ];
     
         let newScore = [];
@@ -446,20 +434,6 @@ function HRDashboard() {
                 <div className='dominant-parameter-container'>
                     <div className='dom-param-title'>
                         <div className='dom-param'>Dominant Parameter</div>
-                        {/* <select onChange={handleCircleSqrGraph} className='month-dropdown' value={curCirSqrMonth}>
-                            <option value="January">January</option>
-                            <option value="February">February</option>
-                            <option value="March">March</option>
-                            <option value="April">April</option>
-                            <option value="May">May</option>
-                            <option value="June">June</option>
-                            <option value="July">July</option>
-                            <option value="August">August</option>
-                            <option value="September">September</option>
-                            <option value="October">October</option>
-                            <option value="November">November</option>
-                            <option value="December">December</option>
-                        </select> */}
                     </div>
                     <CircleComponent circles={circlessqrData} />
                     <div className='dom-param-legend'>
@@ -518,8 +492,7 @@ function HRDashboard() {
                 </ResponsiveContainer>
                 </div>
             </div>
-            <div className='bar-graph'>
-            
+            <div className='bar-graph'>       
                 <div className='d-flex justify-content-between'>
                     <div className='graphHeading'>Highest, lowest & median performances</div>
                     <select onChange={handleBarGraphChange} className='month-dropdown' value={curBarMonth}>
