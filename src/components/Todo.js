@@ -18,7 +18,7 @@ function Todo() {
   
   const [eventVal, setEventVal] = useState({
     date: new Date(),
-    priority: '',
+    priority: 'Low',
     task: '',
     completed:'false',
     author:auth.loggedUser._id
@@ -81,9 +81,8 @@ function Todo() {
     <div className='todo-container'>
       <div className='todo-heading'>
         <div className='todo-heading-1'>To do List</div>
-        <div className='todo-heading-2'>THIS MONTH </div>
       </div>
-      <div className='todo-list'>
+      <div className='todo-list'> 
         <div className='todo-list-header'>
           <div className='todo-cells todo-date'>DUE DATE</div>
           <div className='todo-cells todo-priority'>PRIORITY</div>
@@ -134,7 +133,7 @@ function Todo() {
             <option value="High">High</option>
           </select>
           <input type="text" onChange={handleChange} value={eventVal.task} name='task' id='task' className='pick-task' />
-          <button className='add-task' onClick={handleAddTask}>Add</button>
+          <button className='add-task' onClick={handleAddTask}>Add Task</button>
         </div>
 
       </div>

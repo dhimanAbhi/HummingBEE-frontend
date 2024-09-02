@@ -1,48 +1,36 @@
-.circle-container {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .circle-background {
-    transform: rotate(-90deg);
-    transform-origin: 50% 50%;
-  }
-  
-  .circle-progress {
-    transform: rotate(-90deg);
-    transform-origin: 50% 50%;
-    stroke-dashoffset: var(--stroke-dashoffset);
-    stroke-dasharray: var(--circumference);
-    animation: progress-animation 2s ease-out forwards;
-  }
-  
-  @keyframes progress-animation {
-    from {
-      stroke-dashoffset: var(--circumference);
-    }
-    to {
-      stroke-dashoffset: var(--stroke-dashoffset);
-    }
-  }
-  
-  .circle-text {
-    position: absolute;
-    top: 50%;
-    left: 50%; 
-    color: rgb(255, 255, 255);
-    transform: translate(-50%, -50%);
-    font-size: 45px;
-    font-weight: 600;
-  }
-  
+.circle-prog {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #002020; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #008080;
+}
 
-  .circle-parameter {
-    font-size: 12px;
-    fill: white;
-  }
-  
-  .circle-number-one {
-    font-size: 40px;
-    fill:white;
-  }
-  
+.circle-number {
+  position: absolute;
+  font-size: 4rem;
+  font-weight: 500;
+  color: white;
+  z-index: 2;
+}
+
+.water {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  background: linear-gradient(180deg, #008080 10%, #004040 100%);
+  z-index: 1;
+}
+
+
+.circle-params{
+  color:white;
+  margin-top: 20px;
+  font-weight: 500;
+  font-size: 20px;
+}

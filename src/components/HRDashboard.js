@@ -15,75 +15,24 @@ import styled from '@emotion/styled';
 import { useDispatch } from 'react-redux';
 import { FLASH_SUCCESS, FLASH_ERROR } from '../constants/actionTypes';
 import { useNavigate } from 'react-router-dom';
-
-
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 function HRDashboard() {
 
-    const lol = [
-        {
-          name: 'Page A',
-          uv: 4000,
-          pv: 2400,
-          amt: 2400,
-        },
-        {
-          name: 'Page B',
-          uv: 3000,
-          pv: 1398,
-          amt: 2210,
-        },
-        {
-          name: 'Page C',
-          uv: 2000,
-          pv: 9800,
-          amt: 2290,
-        },
-        {
-          name: 'Page D',
-          uv: 2780,
-          pv: 3908,
-          amt: 2000,
-        },
-        {
-          name: 'Page E',
-          uv: 1890,
-          pv: 4800,
-          amt: 2181,
-        },
-        {
-          name: 'Page F',
-          uv: 2390,
-          pv: 3800,
-          amt: 2500,
-        },
-        {
-          name: 'Page G',
-          uv: 3490,
-          pv: 4300,
-          amt: 2100,
-        },
-      ];
-      
-
-
-
-      const circles = [
-        { radius: 7, color: '#2f7f80', left: '30%', top: '20%' },
-        { radius: 4, color: '#50d1d1', left: '60%', top: '40%' },
-        { radius: 5, color: '#2f4f4f', left: '15%', top: '50%' },
-        { radius: 3, color: '#7fffd4', left: '70%', top: '15%' },
-      ];
 
     const auth = useAuth();
     const userId = auth.loggedUser._id;
 
     const [curDept, setCurDept] = useState('AllDepts.')
     const [scoresData, setScoresData] = useState([])
+    const [moodData, setMoodData] = useState([])
     const [circleData, setCircleData] = useState({})
     const [curLineMonth, setLineCurMonth] = useState(new Date().toLocaleString('default', { month: 'long' }))
     const [curBarMonth, setBarCurMonth] = useState(new Date().toLocaleString('default', { month: 'long' }))
+    const [curStressMonth, setCurStressMonth] = useState(new Date())
     const [lineChartData, setLineChartData] = useState([])
     const [barGraphData, setBarGraphData] = useState([])
+    const [moodParams, setMoodParams] = useState({ data:{'LOW': 0,'MODERATE': 0,'OPTIMUM': 0,'HIGH': 0,'TOO MUCH': 0}, userCount:0 })
 
     const [circlessqrData, setcirclessqrData] = useState([
         { radius: 7, param: 'positivity', color: '#028A0F', left: '20%', top: '10%' },
@@ -96,11 +45,15 @@ function HRDashboard() {
       const dispatch = useDispatch()
       const navigate = useNavigate()
 
+
+
     const handleChange = (e) => {
         const currentDept = e.target.value;
-        setCurDept(e.target.value);
-        setCircleScore(currentDept, scoresData)
-        setLineGraph(curLineMonth, currentDept, scoresData)
+        setCurDept(currentDept);
+        setCircleScore(currentDept, scoresData);
+        setLineGraph(curLineMonth, currentDept, scoresData);
+        setBarData(curBarMonth, currentDept, scoresData);
+        setStressDistrubtion(curStressMonth, currentDept);  // Ensure this is called with correct values
     }
 
     const getWeekOfMonth = (dateString) => {
@@ -110,6 +63,57 @@ function HRDashboard() {
       return weekOfMonth > 4 ? 4 : weekOfMonth;
 
     }
+
+    const handleStressChange = (date) => {
+        setCurStressMonth(date);
+        setStressDistrubtion(date, curDept)
+    }
+
+    const stressColors = ['#C271FE', '#FCFF66', '#2BC702', '#FF7304', '#FF020D']
+    
+    const setStressDistrubtion = (currentDate, currentDept) => {
+        const params = {
+            'LOW': 0,
+            'MODERATE': 0,
+            'OPTIMUM': 0,
+            'HIGH': 0,
+            'TOO MUCH': 0
+        };
+    
+        const distinctUsers = new Set();
+    
+        moodData.forEach(record => {
+            const recordDate = new Date(record.date);
+    
+            const isSameDate = recordDate.getDate() === currentDate.getDate() &&
+                               recordDate.getMonth() === currentDate.getMonth() &&
+                               recordDate.getFullYear() === currentDate.getFullYear();
+    
+            // Determine if the department check should be applied
+            const isSameDept = currentDept === 'All Depts.' || record.user.team === currentDept;
+    
+            if (isSameDate && isSameDept) {
+                const moodCategory = record.data.toUpperCase();  // Ensure the moodCategory is in uppercase
+    
+                if (params[moodCategory] !== undefined) {
+                    params[moodCategory]++;
+                } else {
+                    console.warn(`Unexpected moodCategory: ${moodCategory}`);
+                }
+    
+                distinctUsers.add(record.user.email);
+            }
+        });
+    
+        const distinctUserCount = distinctUsers.size;
+        console.log("Params:", params);  // Debugging: Check the values in params
+        console.log("Distinct User Count:", distinctUserCount);  // Debugging: Check the count of distinct users
+    
+        setMoodParams({ data: params, userCount: distinctUserCount });
+    }
+    
+    
+
 
     const setCircleScore = (currentDept, allScoresData) => {
         let params = { 'positivity': 0, 'engagement':0, 'relationship':0, 'meaning':0}
@@ -364,7 +368,25 @@ function HRDashboard() {
                 console.log(err.message);
             }
         };
-    
+        
+        const getStress = async () => {
+            try {
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${auth.token}`,
+                    },
+                };
+                
+                const { data } = await axios.get(`${apiUrl}/getMood`, config);
+                if (data) {
+                    setMoodData(data.data)
+                }
+            } catch (err) {
+                console.log(err.message);
+            }
+        }
+        getStress()
         getAvgScores();
     }, [userId, auth.token]);
     
@@ -410,7 +432,7 @@ function HRDashboard() {
                         <option value="Team">Team</option>
                     </select>
                 </div>   
-                <div className='parameter-container'>
+                {/* <div className='parameter-container'>
                     {
                         circleData && Object.keys(circleData).map((circle) => {
                             return <div className='parameter-circle'>
@@ -428,7 +450,32 @@ function HRDashboard() {
                         })
                     }
                     
-                </div> 
+                </div>  */}
+            </div>
+           
+        </div>
+        <div className='mid-section'>
+            <div className='stress-distribution'>
+                <div className='d-flex justify-content-between'>
+                    <div className='graphHeading'>Daily Stress Distribution</div>
+                    <DatePicker
+                    selected={curStressMonth}
+                    onChange={handleStressChange}
+                    dateFormat="MM/dd/yyyy"
+                    className='date-picker'
+                    />
+                </div>
+                <div className='stress-params'>
+                    {Object.keys(moodParams.data).map((mood, index) => (
+                        <div key={index} className='stress-item'>
+                            <div className='stress-num'>{moodParams.data[mood]}</div>
+                            <div className='stress-param'><div className='stress-param-circle' style={{backgroundColor:stressColors[index]}}/>{mood}</div>
+                        </div>
+                    ))}
+                </div>
+                <div>
+                    Number of Employee {moodParams.userCount}
+                </div>
             </div>
             <div className='dominant-parameter'>
                 <div className='dominant-parameter-container'>
@@ -436,7 +483,7 @@ function HRDashboard() {
                         <div className='dom-param'>Dominant Parameter</div>
                     </div>
                     <CircleComponent circles={circlessqrData} />
-                    <div className='dom-param-legend'>
+                    {/* <div className='dom-param-legend'>
                         <div>
                             <div><div className='dom-circle-param' style={{backgroundColor:'#028A0F'}}/> Positivity</div>
                             <div><div className='dom-circle-param' style={{backgroundColor:'#B0FC38'}}/> Engagement</div>
@@ -446,7 +493,7 @@ function HRDashboard() {
                             <div><div className='dom-circle-param' style={{backgroundColor:'#3DED97'}}/> Meaning</div>
 
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>
@@ -529,7 +576,7 @@ function HRDashboard() {
                         <Tooltip />
                         <Bar dataKey="lowest" stackId="a" fill="#008080" />
                         <Bar dataKey="median" stackId="a" fill="#a4a4a4" />
-                        <Bar dataKey="median" stackId="a" fill="#00e1e1" />
+                        <Bar dataKey="highest" stackId="a" fill="#00e1e1" />
                         </BarChart>
                     </ResponsiveContainer>
                 </div>

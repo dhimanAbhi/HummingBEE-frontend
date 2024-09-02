@@ -1,3 +1,14 @@
+.todo-box{
+    background-color: #00000043;
+    /* padding: 0px 80px; */
+    width: 55%;
+    margin-left: 2.5%;
+    height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .todo{
     background-color: #002525;
     box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.30);
@@ -214,21 +225,27 @@
     height:100%;
     outline:0;
     padding: 0 8px;
-    /* border:0; */
-}
+    border:0;
+    background-color: #00000043;
+    color: #008080;
 
+}
+ 
 .pick-task{
     height: 100%;
     width: 284px;
     outline: 0;
     border:0;
+    background-color: #00000043;
+    color: #008080;
+    padding: 0 30px;
 }
 
 .add-task{
     height: 100%;
-    color:white;
+    color:#008080;
     width: 95px;
-    background-color: #008080;
+    background-color: white;
     border: 0;
     outline: 0;
 }

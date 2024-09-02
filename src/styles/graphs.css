@@ -4,7 +4,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: url('../images/dashboard.svg');
+    background-color: #002525;
+    /* background: url('../images/dashboard.svg'); */
     color: rgb(213, 213, 213);
     overflow: scroll;
 }
@@ -25,12 +26,15 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    text-align: left;
 }
  
 .graph-heading{
     padding: 50px 0 0 0;
     font-size: 50px;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
+    display: flex;
+    justify-content: flex-start;
 }
 
 .graph-info{
@@ -41,6 +45,9 @@
     padding: 70px;
 }
 
+.graph-heading-para{
+    font-weight: 400;
+}
 
 .graph-info-upper{
     width: 100%;
@@ -49,13 +56,16 @@
     margin-top: 70px;
 }
 
-.mood{
-    width: 50%;
-    display: flex;
-    justify-content: flex-start;
-    border-left: 1px solid white;
-    border-right: 1px solid white;
+.graph-info-upper-first{
+    width: 40%;
+}
 
+.mood{
+    /* width: 50%; */
+    display: flex;
+    justify-content: space-between;
+    border-left: 1px solid white;
+    margin: 0 0 50px 0;
 }
 
 .mood-ask-para{
@@ -162,11 +172,13 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin: 20px 20px;
 }
 
 .graph-container{
     display: flex;
-    justify-content: space-evenly;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 /* smiley slider */
@@ -225,6 +237,7 @@
 .graph-info-lower{
     /* height: 100%; */
     display: flex; 
+    justify-content: space-between;
     padding: 70px 0;
 }
 
@@ -247,3 +260,126 @@
     width: 60px;
     margin-top: 8px;
 }
+
+.metric-slack{
+    height: 450px;
+    width: 40%;
+    margin-right: 2.5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+.metric-improve{
+    background-color: #00000043;    
+    height: 360px;
+    width: 100%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.google-slack{
+    height: 70px;
+    width: 100%;
+    background-color: #00000043;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.google-slack div{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* -------------- */
+
+.metric-improve-heading{
+    font-size: 26px;
+    border-left: 1px solid white;
+    padding-left: 20px;
+    text-align: left;
+}
+
+.metric-improve-text{
+    text-align: left;
+    padding-left: 21px;
+    margin: 10px 0;
+    font-size: 20px;
+}
+
+
+.metric-dummy-text{
+    text-align: justify;
+    margin-top: 30px;
+    padding-left: 21px;
+}
+
+/* -------------- */
+
+
+.dropdown-container {
+    position: relative;
+    display: inline-block;
+    margin-left: 21px;
+  }
+  
+  .dropdown-box {
+    width: 300px;
+    text-align: center;
+    /* padding: 10px; */
+
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    text-align: left;
+    padding: 12px 30px;
+
+  }
+  
+  .dropdown-link {
+    display: block;
+    text-decoration: none;
+    color: black;
+    text-align: left;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    z-index: 1;
+  }
+  
+
+  .dropdown-content .dropdown-link {
+    padding: 12px 30px;
+    background-color: white;
+    border-bottom: 1px solid #ccc;
+    text-align: left;
+  }
+  
+  .dropdown-content .dropdown-link:last-child {
+    border-bottom: none;
+  }
+  
+
+  .dropdown-box:hover .dropdown-content {
+    display: block;
+
+  }
+  
+  .hoverable:hover {
+    background-color: #008080;
+    color: rgb(255, 255, 255);
+  }
+  
