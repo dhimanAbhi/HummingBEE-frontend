@@ -244,12 +244,23 @@
 .stress-params{
     display: flex;
     justify-content: space-between;
-    padding: 0 20px;
-    margin: 50px 0 0;
+    margin: 50px 0 50px;
+    font-size: 14px;
 }
 
 .stress-num{
-    font-size: 70px;
+    font-size: 60px;
+
+}
+
+.stress-item{
+    border-right: 1px solid #008080;
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    /* padding-right: 20px; */
 }
 
 .stress-param{
@@ -262,4 +273,13 @@
     border-radius: 50%;
     margin-right: 5px;
     margin-top: 3px;
+}
+
+.stress-date{
+    outline: 0;
+    border: 0;
+    padding: 10px 15px;
+    cursor: pointer;
+    background-color: #00000043;
+    color: white;
 }

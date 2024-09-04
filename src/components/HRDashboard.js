@@ -90,8 +90,7 @@ function HRDashboard() {
                                recordDate.getFullYear() === currentDate.getFullYear();
     
             // Determine if the department check should be applied
-            const isSameDept = currentDept === 'All Depts.' || record.user.team === currentDept;
-    
+            const isSameDept = currentDept === 'AllDepts.' || record.user.team === currentDept;
             if (isSameDate && isSameDept) {
                 const moodCategory = record.data.toUpperCase();  // Ensure the moodCategory is in uppercase
     
@@ -106,8 +105,8 @@ function HRDashboard() {
         });
     
         const distinctUserCount = distinctUsers.size;
-        console.log("Params:", params);  // Debugging: Check the values in params
-        console.log("Distinct User Count:", distinctUserCount);  // Debugging: Check the count of distinct users
+        // console.log("Params:", params);  // Debugging: Check the values in params
+        // console.log("Distinct User Count:", distinctUserCount);  // Debugging: Check the count of distinct users
     
         setMoodParams({ data: params, userCount: distinctUserCount });
     }
@@ -148,7 +147,6 @@ function HRDashboard() {
                 }
             })
         })
-        console.log("heyyyyy",sqrcircleDat)
     }
 
 
@@ -229,7 +227,7 @@ function HRDashboard() {
         
         
         setLineChartData(params)
-        console.log("wooo: ",params)
+        // console.log("wooo: ",params)
     }
 
     const handleBarGraphChange = (e) => {
@@ -316,7 +314,7 @@ function HRDashboard() {
     
         // Set the bar graph data with the updated params
         setBarGraphData(params);
-        console.log("Bar Data: ", params);
+        // console.log("Bar Data: ", params);
     };
     
 
@@ -362,7 +360,6 @@ function HRDashboard() {
                     setScoresData(data.data);
                     setCircleScore('AllDepts.', data.data);
                     setBarData(new Date().toLocaleString('default', { month: 'long' }), 'AllDepts.', data.data); // Added this to initialize bar chart data
-                    console.log(data.data);
                 }
             } catch (err) {
                 console.log(err.message);
@@ -432,7 +429,7 @@ function HRDashboard() {
                         <option value="Team">Team</option>
                     </select>
                 </div>   
-                {/* <div className='parameter-container'>
+                <div className='parameter-container'>
                     {
                         circleData && Object.keys(circleData).map((circle) => {
                             return <div className='parameter-circle'>
@@ -450,28 +447,44 @@ function HRDashboard() {
                         })
                     }
                     
-                </div>  */}
+                </div> 
             </div>
            
         </div>
         <div className='mid-section'>
             <div className='stress-distribution'>
                 <div className='d-flex justify-content-between'>
-                    <div className='graphHeading'>Daily Stress Distribution</div>
+                    <div className='graphHeading'>Performance-Stress Distribution</div>
+                    <div>
                     <DatePicker
-                    selected={curStressMonth}
-                    onChange={handleStressChange}
-                    dateFormat="MM/dd/yyyy"
-                    className='date-picker'
+                        selected={curStressMonth}
+                        onChange={handleStressChange}
+                        dateFormat="MM/dd/yyyy"
+                        className='date-picker stress-date'
+                        placeholderText="Date" 
                     />
+                    </div>
                 </div>
                 <div className='stress-params'>
-                    {Object.keys(moodParams.data).map((mood, index) => (
-                        <div key={index} className='stress-item'>
-                            <div className='stress-num'>{moodParams.data[mood]}</div>
-                            <div className='stress-param'><div className='stress-param-circle' style={{backgroundColor:stressColors[index]}}/>{mood}</div>
-                        </div>
-                    ))}
+                {Object.keys(moodParams.data).map((mood, index) => (
+    <div
+        key={index}
+        className='stress-item'
+        style={{
+            borderRight: mood === 'TOO MUCH' ? 'none' : '1px solid #ccc' // Apply conditionally
+        }}
+    >
+        <div className='stress-num'>{moodParams.data[mood]}</div>
+        <div className='stress-param'>
+            <div
+                className='stress-param-circle'
+                style={{ backgroundColor: stressColors[index] }}
+            />
+            {mood}
+        </div>
+    </div>
+))}
+
                 </div>
                 <div>
                     Number of Employee {moodParams.userCount}
@@ -480,20 +493,9 @@ function HRDashboard() {
             <div className='dominant-parameter'>
                 <div className='dominant-parameter-container'>
                     <div className='dom-param-title'>
-                        <div className='dom-param'>Dominant Parameter</div>
+                    <div className='dom-param'>Dominant Parameter</div>
                     </div>
-                    <CircleComponent circles={circlessqrData} />
-                    {/* <div className='dom-param-legend'>
-                        <div>
-                            <div><div className='dom-circle-param' style={{backgroundColor:'#028A0F'}}/> Positivity</div>
-                            <div><div className='dom-circle-param' style={{backgroundColor:'#B0FC38'}}/> Engagement</div>
-                        </div>
-                        <div>
-                            <div><div className='dom-circle-param' style={{backgroundColor:'#3A5311'}}/> Relationship</div>
-                            <div><div className='dom-circle-param' style={{backgroundColor:'#3DED97'}}/> Meaning</div>
-
-                        </div>
-                    </div> */}
+                    <CircleComponent moodParams={moodParams} />
                 </div>
             </div>
         </div>

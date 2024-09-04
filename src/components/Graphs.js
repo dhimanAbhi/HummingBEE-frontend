@@ -249,10 +249,10 @@ function Graphs() {
                   Lorem ipsum odor amet, consectetuer adipiscing elit. Vivamus hac feugiat eros ridiculus at sagittis. Erat justo dapibus nullam senectus aptent vehicula vehicula. Dis inceptos rutrum lacinia dui scelerisque sapien ultrices volutpat
                   </div>
               </div>
-              <div className='google-slack'>
-                <div style={{borderRight:"1px solid white"}}>Google Calendar</div>
-                <div>Slack</div>
-              </div>
+              {/* <div className='google-slack'>
+                <div style={{borderRight:"1px solid white"}}>Google Calendar <a href='https://calendar.google.com/'><img src="../images/google-calendar-new.svg" className='google-slack-img'/></a></div>
+                <div>Slack <a href="https://slack.com/"><img src="../images/slack-new.svg" className='google-slack-img'/></a></div>
+              </div> */}
           </div>
           <div className='todo-box'>
             <Todo />

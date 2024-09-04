@@ -1,9 +1,24 @@
 import React from 'react';
 import '../styles/circlecomponent.css';
 
-const CircleComponent = ({ circles }) => {
-  // Function to map radius input (1-10) to actual pixel sizes (e.g., 15px - 75px)
-  const mapRadiusToSize = (radius) => radius * 7.5; // Mapping 1-10 to 15px - 75px
+const CircleComponent = ({ moodParams }) => {
+  const stressColors = ['#C271FE', '#FCFF66', '#2BC702', '#FF7304', '#FF020D'];
+
+  // Function to map mood value to radius size
+  const mapValueToRadius = (value) => {
+    return (value / 100) * 4500; // Maps 0-100 to 0-75px
+  };
+
+  // Create circle data based on moodParams.data
+  const circles = Object.keys(moodParams.data).map((key, index) => ({
+    radius: mapValueToRadius(moodParams.data[key]),
+    param: key,
+    color: stressColors[index % stressColors.length], // Ensure color index is within bounds
+    left: `${(index % 3) * 30 + 10}%`, // Adjust positioning as needed
+    top: `${Math.floor(index / 3) * 30 + 10}%`, // Adjust positioning as needed
+  }));
+
+  console.log(circles); // Debugging line
 
   return (
     <div className="circle-square-container">
@@ -12,8 +27,8 @@ const CircleComponent = ({ circles }) => {
           key={index}
           className="circle-sqaure"
           style={{
-            width: `${mapRadiusToSize(circle.radius)}px`,
-            height: `${mapRadiusToSize(circle.radius)}px`,
+            width: `${circle.radius}px`,
+            height: `${circle.radius}px`,
             backgroundColor: circle.color,
             left: circle.left,
             top: circle.top,
