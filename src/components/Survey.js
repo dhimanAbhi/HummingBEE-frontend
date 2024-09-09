@@ -98,7 +98,7 @@ function Survey() {
         catch(err){
             dispatch({type:FLASH_ERROR, payload:err.message})
         }
-    }
+    } 
     
     useEffect(()=>{
         console.log(page, activeStep)

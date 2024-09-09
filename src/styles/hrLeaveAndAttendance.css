@@ -1,0 +1,253 @@
+.attendance-leave-container{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.attendance-upper-container{
+    padding: 100px;
+
+}
+
+.attendance-date-time{
+    display: flex;
+    justify-content: space-between;
+}
+
+.attendance-time{
+    display: flex;
+}
+
+.attendance-time-compo{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 20px;
+    justify-content: space-between;
+
+}
+
+.attendance-time-view{
+    color: rgba(255, 255, 255, 0.484);
+    font-size: 26px;
+}
+
+.attendance-time-insight{
+    color: white;
+}
+
+.attendance-today{
+    color: rgba(255, 255, 255, 0.484);
+    font-size: 20px;
+}
+
+.attendance-date-view{
+    color: white;
+    font-size: 20px;
+
+}
+
+.attendance-date{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 250px;
+
+}
+
+.view-attendance{
+    padding: 10px 20px;
+    border: 0;
+    border-radius: 5px;
+}
+
+.view-attendance:hover{
+    background-color: #008080;
+    color: white;
+    border: 1px solid white;
+}
+
+.attendance-status{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 70px 0 0;
+
+}
+
+.attendance-employee-stats{
+    display: flex;
+    padding: 20px 40px;
+    border: 1px solid #008080;
+    color: #008080;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-radius: 30px;
+    background-color: rgba(16, 16, 16, 0.40);    
+    width: 300px;
+    height: 180px;
+    margin: 30px 60px;
+}
+
+.attendance-employee-content{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.attendance-employee-number{
+    font-size: 60px;
+}
+
+.attendance-employee-label{
+    font-size: 22px;
+}
+
+.attendance-employee-img{
+    margin-top: 13px;
+    height: 50px;
+    width: 50px;
+}
+
+.attendance-overview{
+    background-color: white;
+}
+
+.search-bar-container{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    align-items: center;
+}
+
+.attendance-search-heading{
+    color: #008080;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+
+.search-bar-attendance{
+    color: #008080;
+    padding:6px 20px;
+    outline: 0;
+    border: 2px solid #008080;
+    border-radius: 4px;
+    width: 650px;
+}
+
+.search-bar-attendance::placeholder{
+    color: #008080;
+
+}
+
+
+.attendance-table-date{
+    color: #008080;
+    padding:6px 20px;
+    outline: 0;
+    border: 2px solid #008080;
+    border-radius: 4px;
+    background-color: rgb(233, 233, 233);
+}
+
+.view-attendance-btn{
+    background-color: #008080;
+    color: white;
+    padding:8px 22px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    outline: 0;
+    border: 0;
+}
+
+.view-attendance-img{
+    margin-right: 10px;
+}
+
+.attendance-table-header{
+    background-color: #008080;
+    color: white;
+    font-weight: 600;
+    padding: 20px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 !important;
+}
+
+.attendance-table-cell-header{
+
+}
+
+.attendance-table-dropdowns{
+    background-color: #008080;
+    border: 0;
+    color: white;
+    outline: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.department-select:active{}
+
+.dept-select-opt{
+    background-color: rgb(255, 255, 255);
+    color: #008080;
+    padding: 5px;
+    border: 1px solid #008080;
+    cursor: pointer;
+}
+
+.attendance-table-rows{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.attendance-table-row{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #008080;
+    padding: 10px;
+}
+
+.attendance-employee-name{
+    width: 200px;
+}
+
+.attendance-employee-date{
+    width: 200px;
+}
+
+.check-time{
+    width: 100px;
+}
+
+/* const [userData, setUserData] = useState([])
+const [curDept, setcurDept] = useState("AllDepts.")
+const [checkIn, setCheckIn] = useState("")
+const [checkOut, setCheckOut] = useState("")
+const [curDate, setCurDate] = useState(new Date())
+<div className='attendance-table-rows'>
+              <div className='attendance-employee-id'></div>
+              <div className='attendance-employee-name'></div>
+              <div className='attendance-employee-dept'></div>
+              <div className='attendance-employee-date'></div>
+              <div className='attendance-employee-checkIn'></div>
+              <div className='attendance-employee-checkOut'></div>
+              <div className='attendance-employee-workHours'></div>
+        </div> ---------  the userData is populated with checkIn and Checkout time. Fill the above div elements. For each employee, fetch the record of those employees whose dept is equal to curDept. If curDept is set to AllDepts., then fetch all employees out of userData. Out of those employee, fetch the record out of checkInOutHistory for the curDate. You can get that from the checkIn field of the object inside the checkInOutHistory array of records. If there exist no record for that employee on that particular day, or the checkIn is empty, then it means the employee is absent. Out of those employee fetched curDate and curDept. Get those filter those employee which have checkIn on or after checkIn state. If the checkIn is "" or null, then fetch all the employee with any checkIn for the particular Date. After that, another filter should be applied based on checkOut. The time mentioned in the checkOut should be used to fetch those employee whose check is on or before checkOut time. At last, after applying all these filters, and getting, fill the param array of object with objects { id: , empName: , date: , status: , checkIn: , checkOut: ,  workHours: }. The status should be equal to the absent
+lateArrival
+earlyDeparture values. If there exist no checkIN, then it means the employee is absent, if emp checkIn is after 09:00am, then the emp is Late Arrival, if the emp checksOut before6 pm, then the employee is early Departure. */

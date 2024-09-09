@@ -25,8 +25,17 @@ function Graphs() {
     const [value, setValue] = useState(50);
 
     const [activeBox, setActiveBox] = useState(null);
+    const [checkedIn, setCheckedIn] = useState(false)
+    const [checkedOut, setCheckedOut] = useState(false)
+    const [checkInOutTime, setCheckInOutTime] = useState({checkIn:"", checkOut:"", user:auth.loggedUser._id})
 
-    
+    const config = {
+      withCredentials: true,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
 
   const boxes = [
     { label: 'LOW', description: 'UNDERLOAD' },
@@ -42,12 +51,6 @@ function Graphs() {
   const handleMood = async (index, box) => {
     setActiveBox(index)
       try{
-          const configtwo = {
-              withCredentials: true,
-              headers: {
-                'Content-Type': 'application/json',
-              },
-            };
 
             const moodData = {
               mood:box.label,
@@ -55,7 +58,7 @@ function Graphs() {
               author: auth.loggedUser._id
             }
 
-          const {data} = await axios.post(`${apiUrl}/mood`, moodData, configtwo)
+          const {data} = await axios.post(`${apiUrl}/mood`, moodData, config)
               
           if(data.type === "success"){
               console.log("success")
@@ -116,6 +119,30 @@ function Graphs() {
 }
 
   
+const handleCheckIn = async () => {
+    const newCheckStatus = {...checkInOutTime, checkIn:new Date()}
+    setCheckedIn(true)
+    setCheckInOutTime(newCheckStatus)
+    setCheckedInOut(newCheckStatus)
+}
+const handleCheckOut = async () => {
+    const newCheckStatus = {...checkInOutTime, checkOut:new Date()}
+    setCheckedIn(false)
+    setCheckedOut(true)
+    setCheckInOutTime(newCheckStatus)
+    setCheckedInOut(newCheckStatus)
+}
+
+const setCheckedInOut = async (newCheckStatus) => {
+  const {data} = await axios.post(`${apiUrl}/setCheckInOut`, newCheckStatus, config)    
+
+  if(data.type === "success"){
+      dispatch({type:FLASH_SUCCESS, payload:data.message})
+  }
+  else
+      dispatch({type:FLASH_ERROR, payload:data.message})
+}
+
   useEffect(() => {
     const getScores = async () => {
         try {
@@ -128,7 +155,7 @@ function Graphs() {
             
             const { data } = await axios.get(`${apiUrl}/scores/${userId}`, config);
             if (data) {
-                console.log(data.data[0].data);
+                // console.log(data.data[0].data);
 
                 setGraphData(data.data[0].data);
             }
@@ -137,6 +164,32 @@ function Graphs() {
         }
     };
 
+    const getCheckInOut = async () => {
+      const {data} = await axios.get(`${apiUrl}/getCheckInOut/${userId}`,config)
+      console.log(data) 
+    
+      if(data.type === "success"){
+          setCheckInOutTime(data.data)
+          const isCheckedIn = data.data.checkIn == null || data.data.checkIn == ""
+          const isCheckedOut = data.data.checkOut == null || data.data.checkOut == ""
+   
+          if(isCheckedIn){ 
+            setCheckedIn(false)
+            setCheckedOut(false)
+          }
+          else if(isCheckedOut){
+            setCheckedIn(true)
+            setCheckedOut(false)
+          }
+          else if(!(isCheckedIn&&isCheckedOut)){
+            setCheckedIn(false)
+            setCheckedOut(true)
+          }
+      }
+      else
+          dispatch({type:FLASH_ERROR, payload:data.message})
+    }
+    getCheckInOut()
     getScores();
 }, [userId, auth.token]); 
   
@@ -161,8 +214,14 @@ function Graphs() {
         <div className='graph-heading-para'>We're thrilled to see you again. Dive into your personalized dashboard to explore your recent <b>achievements, upcoming goal</b> and <b>insigts into your engagement and well-being.</b>Let's continue to grow and succeed together!</div>
       </div>
       <div className='graph-info'>
+            <div className='emp-checks'>
+              <button className={` ${checkedIn?'emp-check-in':checkedOut?'emp-check-dis':'emp-check'}`} disabled={checkedOut} onClick={handleCheckIn}>Check in</button>
+              <button className={` ${checkedIn?'emp-check':checkedOut?'emp-check-in':'emp-check-dis'}`} disabled={checkedIn?false:true} onClick={handleCheckOut}>Check out</button>
+              <button className='emp-check' >Request Leave</button>
+            </div>
         <div className='graph-info-upper'>
           <div className='graph-info-upper-first'> 
+          
             <div className='mood'>
                 <div className='mood-ask'>
                   <div className='mood-ask-para'>

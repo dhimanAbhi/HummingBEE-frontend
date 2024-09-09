@@ -53,7 +53,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    margin-top: 70px;
+    margin-top: 30px;
 }
 
 .graph-info-upper-first{
@@ -387,3 +387,41 @@
     color: rgb(255, 255, 255);
   }
   
+.emp-checks{
+    display: flex;
+    margin: 0 0 40px;
+}
+
+.emp-check{
+    margin: 0 5px 0 0;
+    border: 1px solid white;
+    padding: 5px 15px;
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+}
+
+.emp-check:hover{
+    cursor: pointer;
+    background-color: white;
+    color: #008080;
+    border: 1px solid #008080;
+
+}
+
+.emp-check-in{
+    background-color: white;
+    color: #008080;
+    padding: 5px 15px;
+    border: 1px solid #008080;
+    margin: 0 5px 0 0;
+
+}
+
+.emp-check-dis{
+    background-color: rgba(255, 255, 255, 0.153);
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid white;
+    padding: 5px 15px;
+    margin: 0 5px 0 0;
+
+}

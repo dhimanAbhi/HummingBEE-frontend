@@ -237,35 +237,14 @@ function HRDashboard() {
     }
     const setBarData = (currentMonth, currentDept, allScoresData) => {
         let params = [
-            {
-                weekName: "Week 1",
-                lowest: 0,
-                median: 0,
-                highest: 0
-            },
-            {
-                weekName: "Week 2",
-                lowest: 0,
-                median: 0,
-                highest: 0
-            },
-            {
-                weekName: "Week 3",
-                lowest: 0,
-                median: 0,
-                highest: 0
-            },
-            {
-                weekName: "Week 4",
-                lowest: 0,
-                median: 0,
-                highest: 0
-            },
+            { weekName: "Week 1", lowest: 0, median: 0, highest: 0 },
+            { weekName: "Week 2", lowest: 0, median: 0, highest: 0 },
+            { weekName: "Week 3", lowest: 0, median: 0, highest: 0 },
+            { weekName: "Week 4", lowest: 0, median: 0, highest: 0 },
         ];
     
         let newScore = [];
     
-        // Filter scores based on currentDept and currentMonth
         allScoresData.forEach((score) => {
             const dateObject = new Date(score.date);
             const monthString = dateObject.toLocaleString('en-US', { month: 'long' });
@@ -276,7 +255,7 @@ function HRDashboard() {
                 newScore.push(score);
             }
         });
-    
+     
         let weeks = ["Week 1", "Week 2", "Week 3", "Week 4"];
     
         weeks.forEach(week => {
@@ -300,21 +279,23 @@ function HRDashboard() {
                 const highest = Math.max(...weeklyScores);
                 const median = Number((weeklyScores.reduce((acc, curr) => acc + curr, 0) / weeklyScores.length).toFixed(1));
     
+                // Apply the transformation: highest = highest - median, median = median - lowest
+                const adjustedHighest = Number((highest - median).toFixed(1));
+                const adjustedMedian = Number((median - lowest).toFixed(1));
+    
                 // Update params for the given week
                 for (let i = 0; i < params.length; i++) {
                     if (params[i].weekName === week) {
                         params[i].lowest = lowest;
-                        params[i].median = median;
-                        params[i].highest = highest;
-                        break; // Stop the loop once the weekName is found and updated
+                        params[i].median = adjustedMedian;
+                        params[i].highest = adjustedHighest;
+                        break;
                     }
                 }
             }
         });
     
-        // Set the bar graph data with the updated params
         setBarGraphData(params);
-        // console.log("Bar Data: ", params);
     };
     
 
