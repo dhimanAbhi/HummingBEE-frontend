@@ -235,6 +235,21 @@
     width: 100px;
 }
 
+.attendance-employee-checkIn{
+    width: 70px;
+    padding: 0 !important;
+}
+
+.attendance-employee-checkOut{
+    width: 82px;
+    padding: 0 !important;
+
+}
+
+.attendance-employee-status{
+    width: 80px;
+}
+
 /* const [userData, setUserData] = useState([])
 const [curDept, setcurDept] = useState("AllDepts.")
 const [checkIn, setCheckIn] = useState("")

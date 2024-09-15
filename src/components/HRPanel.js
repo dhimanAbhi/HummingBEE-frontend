@@ -21,7 +21,6 @@ const Sidebar = () => {
       <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <div className='sidebar-content'>
             <div className='sidebar-topcontent'>
-
                 <div className='sidebar-title'>HummingBEE</div>
                 <div className='sidebar-links' style={{cursor:"default"}}>Menu</div>
                 <div className={`sidebar-links ${activeComponent=="HRDashboard"?'active-compo':''}`} onClick={() => loadComponent('HRDashboard')}>Dashboard</div>

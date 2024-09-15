@@ -19,6 +19,13 @@ function HRLeavesAndAttendance() {
   const [tableRows, setTableRows] = useState([]);
   const [tabelRawData, setTabelRawData] = useState([]);
   const [nameSearch, setNameSearch] = useState('');
+  const [status, setStatus] = useState("Status");
+
+  // Handler to update the state when the user selects a new option
+  const handleStatusChange = (event) => {
+    setStatus(event.target.value);
+  };
+
   const auth = useAuth();
   
   const handleCurDateChange = (date) => {
@@ -134,16 +141,6 @@ function HRLeavesAndAttendance() {
         return true; // Keep the user as they are absent
       }
   
-      // If checkIn filter is set, check if user's checkIn time matches
-      if (checkIn && parseTimeString(todayRecord.checkIn).getTime() < parseTimeString(checkIn).getTime()) {
-        return false;
-      }
-  
-      // If checkOut filter is set, check if user's checkOut time matches
-      if (checkOut && todayRecord.checkOut && parseTimeString(todayRecord.checkOut).getTime() > parseTimeString(checkOut).getTime()) {
-        return false;
-      }
-  
       return true;
     }).map((user) => {
       // Find today's record
@@ -192,6 +189,7 @@ function HRLeavesAndAttendance() {
   
     setTableRows(filteredRows);
   };
+  
   
   
   useEffect(() => {
@@ -370,33 +368,20 @@ function HRLeavesAndAttendance() {
             <div className='attendance-employee-date col-1'>
               Date
             </div>
-            <div className='attendance-employee-status col-1'>Status</div>
-            <div className='attendance-employee-checkIn d-flex flex-column align-items-start col-1'>
-              <select
-                id='checkin-select'
-                value={checkIn}
-                onChange={(e) => setCheckIn(e.target.value)}
-                className='attendance-table-dropdowns check-time'
-              >
-                <option value="" disabled>Select Check In</option> {/* Placeholder */}
-                {timeOptions.map((time, index) => (
-                  <option className='dept-select-opt' key={index} value={time}>{time}</option>
-                ))}
+            <div className='  attendance-employee-status col-1'>
+              <select className='attendance-table-dropdowns attendance-employee-status' value={status} onChange={handleStatusChange}>
+                <option value="Status" disabled>Status</option>
+                <option value="Absent">Absent</option>
+                <option value="Late Arrival">Late Arrival</option>
+                <option value="Early Departure">Early Departure</option>
               </select>
+            </div>            
+            <div className='attendance-employee-checkIn d-flex flex-column align-items-start col-1'>
+              Check In
             </div>
 
             <div className='attendance-employee-checkOut d-flex flex-column align-items-start col-1'>
-              <select
-                id='checkout-select'
-                value={checkOut}
-                onChange={(e) => setCheckOut(e.target.value)}
-                className='attendance-table-dropdowns check-time'
-              >
-                <option value="" disabled>Select Check Out</option> {/* Placeholder */}
-                {timeOptions.map((time, index) => (
-                  <option className='dept-select-opt' key={index} value={time}>{time}</option>
-                ))}
-              </select>
+              Check Out
             </div>    
             <div className='attendance-employee-workHours col-1'>Work Hours</div>
           </div>

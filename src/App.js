@@ -16,6 +16,8 @@ import ScrollToTop from './components/ScrollToTop';
 import HRDashboard from './components/HRDashboard';
 import Toolkit from './components/Toolkit';
 import HRPanel from './components/HRPanel'
+import Requestleave from './components/Requestleave';
+import LeaveView from './components/LeaveView';
 
 function App() {
   return (
@@ -33,7 +35,8 @@ function App() {
           <Route path='/onboarding' element={<RequireAuth><ThankYou /></RequireAuth>} />
           <Route path='/hrdashboard' element={<RequireAuth><HRPanel /></RequireAuth>} />
           <Route path='/toolkit' element={<Toolkit />} />
-         
+          <Route path='/requestleave' element={<Requestleave />} />
+          <Route path='/leaveview' element={<LeaveView />}/>
         </Routes>
         </Authprovider>
       </Router>
