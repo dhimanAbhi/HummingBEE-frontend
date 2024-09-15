@@ -1,0 +1,192 @@
+.app-container {
+  display: flex;
+  height: 100vh;
+  background-color: #002525;
+}
+
+.toolkit-sidebar {
+  width: 250px;
+  background-color: #00000043;
+  color: white;
+  transition: transform 0.3s ease;
+  transform: translateX(-100%);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  padding-top: 60px;
+  height: 100vh;
+}
+
+.toolkit-sidebar.toolkit-open {
+  transform: translateX(0);
+}
+
+.toolkit-sidebar-content {
+  padding: 70px 0px;
+  text-align: left;
+  color: grey;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+}
+
+.toolkit-sidebar-title {
+  font-size: 24px;
+  margin: 0px 0 100px;
+  text-align: center;
+  
+}
+
+.toolkit-sidebar-link {
+  margin-bottom: 10px;
+  cursor: pointer;
+  padding: 10px 0 10px 45px;
+  text-align: left;
+  width: 100%;
+  /* padding: 0 0 0 60px; */
+  
+}
+
+.toolkit-sidebar-link.active {
+  background-color: #008080;
+  color: white;
+}
+
+.sidebar-logout {
+  text-align: left;
+  width: 100%;
+  padding-left: 45px;
+}
+
+.main-toolkit-content {
+  flex: 1;
+  margin-left: 0;
+  transition: margin-left 0.3s ease;
+  background-color: #002525;
+  padding: 20px;
+}
+
+.main-toolkit-content .toggle-button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #0000003f;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  cursor: pointer;
+  z-index: 1100;
+  transition: left 0.3s ease;
+}
+
+.sidebar.open ~ .main-toolkit-content {
+  margin-left: 250px;
+}
+
+.main-toolkit-content .toggle-button {
+  left: 10px;
+}
+
+.sidebar.open ~ .main-toolkit-content .toggle-button {
+  left: 260px;
+}
+
+
+.toolkit-container{
+  height: 100vh;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 50px;
+}
+
+.toolkit-container::-webkit-scrollbar{
+  width: 0;
+}
+
+.toolkit-title{
+  color: #FFF;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  margin-bottom: 30px;
+}
+
+.tookit-title-content{
+  color: #FFF;
+  font-family: "Work Sans";
+  font-size: 18.337px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  opacity: 0.4;
+  text-align: justify;
+  margin-bottom: 70px;
+}
+
+.toolkit-improve-ask{
+  display: flex;
+  flex-direction: column; 
+  align-items:flex-start;
+  width: 250px;
+  margin-bottom: 100px;
+}
+
+.toolkit-improve-ask-question{
+  color: #FFF;
+  font-family: "Work Sans";
+  font-size: 18.337px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  opacity: 0.4;
+  text-align: left;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.tookit-yes-no{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.toolkit-yes-no-btn{
+  width: 110px;
+  padding: 8px 0;
+  border-radius: 8px;
+  border: 0;
+  outline: 0;
+}
+
+.toolkit-yes{
+  background-color: white;
+  color: #008080;
+  font-weight: 600;
+}
+
+.toolkit-yes:hover{
+  background-color: #008080;
+  color: white;
+}
+
+.toolkit-no{
+  background: #262626;
+  color: white;
+}
+
+.toolkit-no:hover{
+  background-color: rgb(122, 122, 122);
+  color: black;
+}

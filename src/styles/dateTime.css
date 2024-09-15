@@ -1,0 +1,83 @@
+
+.event-time {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    /* margin-bottom: 8px; */
+    font-size: 18px;
+}
+
+/* .input-container {
+    display: flex;
+    align-items: center;
+} */
+
+/* input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #00796b;
+    margin-right: 8px;
+} */
+
+.calendar-button {
+    background-color: #002525;
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.calendar-button:hover {
+    background-color: #004d40;
+}
+
+/* Custom styles for react-datetime */
+.rd-container {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.rdtPicker {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.rdtPicker table {
+    width: 100%;
+}
+
+.rdtPicker td, .rdtPicker th {
+    padding: 10px;
+    text-align: center;
+}
+
+.rdtPicker td {
+    cursor: pointer;
+}
+
+.rdtPicker td.rdtToday:before {
+    border-bottom-color: transparent;
+}
+
+.rdtPicker td.rdtActive,
+.rdtPicker td.rdtActive:hover {
+    background-color: #00796b;
+    color: #ffffff;
+}
+
+.rdtPicker td:hover {
+    background-color: #e0f7fa;
+    color: #000000;
+}
+
+.rdtTime .rdtCount {
+    color: #000000;
+}
+
+.rdtPicker th {
+    color: #000000;
+}

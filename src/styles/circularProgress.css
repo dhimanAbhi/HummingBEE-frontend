@@ -1,0 +1,36 @@
+.circle-prog {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #002020; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #008080;
+}
+
+.circle-number {
+  position: absolute;
+  font-size: 4rem;
+  font-weight: 500;
+  color: white;
+  z-index: 2;
+}
+
+.water {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  background: linear-gradient(180deg, #008080 10%, #004040 100%);
+  z-index: 1;
+}
+
+
+.circle-params{
+  color:white;
+  margin-top: 20px;
+  font-weight: 500;
+  font-size: 20px;
+}
