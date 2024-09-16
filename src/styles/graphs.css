@@ -13,6 +13,14 @@
   display: none;
 }
 
+.hr-head-graph{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0 0 20px; 
+    padding: 20px 70px ;
+}
+
 /* Hide scroll bar for IE and Edge */
 .graphs {
   -ms-overflow-style: none; /* IE and Edge */
@@ -20,7 +28,7 @@
 }
 
 .graph-header{
-    padding: 0 100px;
+    padding: 0 70px;
     height: 640px;
     display: flex;
     flex-direction: column;
@@ -51,16 +59,24 @@
 .graph-info-upper{
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     margin-top: 30px;
 }
 
 .graph-info-upper-first{
-    width: 40%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.graph-info-upper-second{
+    width: 100%;
 }
 
 .mood{
-    /* width: 50%; */
+    width: 40%;
     display: flex;
     justify-content: space-between;
     border-left: 1px solid white;
@@ -178,6 +194,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    margin: 70px 0;
 }
 
 /* smiley slider */

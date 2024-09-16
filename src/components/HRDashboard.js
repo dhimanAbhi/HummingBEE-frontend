@@ -377,7 +377,7 @@ function HRDashboard() {
     }, [scoresData]); // Trigger this effect whenever scoresData is updated
     
 
-  return (
+  return ( 
     <div className='dashboard-container'>
         <div class="hr-heading">
             <div className='hr-heading-container'>

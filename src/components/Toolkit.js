@@ -45,7 +45,7 @@ const Toolkit = () => {
         </div>
 
         {/* Rendering components based on the activeComponent state */}
-        {activeComponent === 'Dashboard' && <Graphs />}
+        {activeComponent === 'Graphs' && <Graphs />}
         {activeComponent === 'Positivity' && <Positivity />}
         {activeComponent === 'Engagement' && <Engagement />}
         {activeComponent === 'Relationship' && <Relationship />}

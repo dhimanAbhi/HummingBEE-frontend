@@ -196,8 +196,8 @@ const setCheckedInOut = async (newCheckStatus) => {
 
   return ( 
     <div className='graphs'>
-      <div class="hr-heading" style={{margin:"50px 0", padding:"0 100px"}}>
-            <div className='hr-heading-container' style={{margin:0}}>
+      <div class="hr-heading" >
+            <div className='hr-head-graph' style={{margin:"0 !important"}}>
             <div class="hr-icon">HummingBEE</div>
                 <div class="lines">
                 <div class="hr-line"></div>
@@ -221,7 +221,6 @@ const setCheckedInOut = async (newCheckStatus) => {
             </div>
         <div className='graph-info-upper'>
           <div className='graph-info-upper-first'> 
-          
             <div className='mood'>
                 <div className='mood-ask'>
                   <div className='mood-ask-para'>
@@ -246,7 +245,21 @@ const setCheckedInOut = async (newCheckStatus) => {
                       />
                   </div>
             </div>
-            <div className='para'>
+            <div className="box-grid">
+                    {boxes.map((box, index) => (
+                      <div
+                        key={index}
+                        className={`box ${activeBox === index ? 'active' : ''}`}
+                        onClick={() => handleMood(index, box)}
+                      >
+                        <div className="label">{box.label}</div>
+                        <div className="description">{box.description}</div>
+                      </div>
+                    ))}
+                </div>
+          </div>
+          <div className='graph-info-upper-second'> 
+          <div className='para'>
                     <div className='graph-container'>
                       {
                         graphData.length?
@@ -263,20 +276,7 @@ const setCheckedInOut = async (newCheckStatus) => {
                       }
                       </div>
             </div>
-          </div>
-          <div className='graph-info-upper-second'> 
-            <div className="box-grid">
-                    {boxes.map((box, index) => (
-                      <div
-                        key={index}
-                        className={`box ${activeBox === index ? 'active' : ''}`}
-                        onClick={() => handleMood(index, box)}
-                      >
-                        <div className="label">{box.label}</div>
-                        <div className="description">{box.description}</div>
-                      </div>
-                    ))}
-                </div>
+            
           </div>
           
         
